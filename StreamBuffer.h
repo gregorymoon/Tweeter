@@ -9,6 +9,10 @@ class StreamBuffer{
 	public:
 		StreamBuffer();
 		~StreamBuffer();
+
+		Tweet* getToStream();
+		Tweet* getFromStream();
 	private:
+		Tweet *toStream, *fromStream;
 };
 #endif

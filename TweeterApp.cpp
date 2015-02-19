@@ -7,6 +7,7 @@
 #include <sstream>
 #include <vector>
 #include <queue>
+#include <pthread.h>
 
 #include "User.h"
 #include "Streamer.h"
@@ -15,6 +16,8 @@
 std::vector<User *> readAllUsersFromFile(std::string dirPath);
 User* readUserFromFile(std::string filepath);
 std::vector<std::string> split(std::string inputString);
+std::vector<pthread_t> startUserThreads(std::vector<User *> users);
+void joinThreads(std::vector<pthread_t> userThread);
 
 int main(int argc, char* argv[]){
 	//get dir location from user input
@@ -29,11 +32,29 @@ int main(int argc, char* argv[]){
 
 	//Streamer::start();
 
-	//User *u1 = new User("handle");
-
+	std::vector<pthread_t> userThreads = startUserThreads(users);
+	joinThreads(userThreads);
 	//Streamer::join();
 	
 	return 0;
+}
+
+std::vector<pthread_t> startUserThreads(std::vector<User *> users){
+	std::vector<pthread_t> threads;
+
+	for(int userIdx = 0; userIdx < users.size(); userIdx++){
+		User *currUser = users[userIdx];
+		pthread_t userThread;
+		pthread_create(&userThread, NULL, User::start, (void *) currUser);
+		threads.push_back(userThread);
+	}
+
+	return threads;
+}
+
+void joinThreads(std::vector<pthread_t> threads){
+	for(int threadIdx = 0; threadIdx < threads.size(); threadIdx++)
+		pthread_join(threads[threadIdx], NULL);
 }
 
 std::vector<User *> readAllUsersFromFile(std::string dirPath){

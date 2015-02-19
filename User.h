@@ -7,7 +7,7 @@
 #include "Tweet.h"
 
 //Commands:
-//0 = Start
+//0 = Send Tweet to Tweeter
 //1 = Follow
 //2 = Read
 
@@ -18,16 +18,18 @@ class User{
 
 		std::string getHandle();
 		
-		void start();
+		static void *start(void *userObject);				
 	private:
 		std::string handle;
-		
 		std::queue<Tweet *> tweets;
-
 		std::queue<int> commands;
-		
 		std::queue<std::string> tagsToFollow;
+
 		void initializeBuffer();
+		void follow();
+		void send();
+		void read();
+		void *runCommands();
 };
 
 #endif
