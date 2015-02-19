@@ -1,6 +1,5 @@
 all: TweeterApp.o Tweeter.o User.o Tweet.o Streamer.o StreamBuffer.o
 	g++ -lpthread -std=c++11 -o TweeterApp StreamBuffer.o TweeterApp.o Tweeter.o User.o Tweet.o Streamer.o
-	make clean
 
 TweeterApp.o: TweeterApp.cpp
 	g++ -c -std=c++11 TweeterApp.cpp

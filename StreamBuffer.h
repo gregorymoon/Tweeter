@@ -9,11 +9,6 @@ class StreamBuffer{
 	public:
 		StreamBuffer();
 		~StreamBuffer();
-		
-		std::queue<Tweet> getFollowStream();
-		std::queue<Tweet> getTweetStream();
 	private:
-		std::queue<Tweet> followStream, tweetStream;
 };
-
 #endif

@@ -2,6 +2,7 @@
 #define TWEETER_H
 
 #include <unordered_map>
+#include <string>
 
 #include "Tweet.h"
 
@@ -10,6 +11,7 @@ class Tweeter{
 		Tweeter();
 		~Tweeter();
 	private:
+		std::unordered_map<std::string, Tweet *> tweetsByHashtag;
 };
 
 #endif
