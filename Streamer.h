@@ -12,6 +12,8 @@ class Streamer{
 		static void join();
 	private:
 		static void *runThreadFunctions(void *params);
+		static void updateFollowStreams();
+		static void updateTweetStreams();
 };
 
 #endif

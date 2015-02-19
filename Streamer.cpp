@@ -1,8 +1,8 @@
 #include <cstdlib>
 #include <cstdio>
 #include <pthread.h>
-#include <unordered_map>
 #include <unistd.h>
+#include <unordered_map>
 
 #include "Streamer.h"
 #include "StreamBuffer.h"
@@ -25,7 +25,8 @@ void Streamer::start(){
 
 void *Streamer::runThreadFunctions(void *params){
 	while(true){
-		printf("Streamer Running\n");
+		updateFollowStreams();
+		updateTweetStreams();
 		usleep(200000);
 	}
 }
@@ -38,4 +39,12 @@ void Streamer::addBuffer(std::string key){
 
 void Streamer::join(){
 	pthread_join(streamerThread, NULL);
+}
+
+void Streamer::updateFollowStreams(){
+	printf("Updating Follow Streams\n");
+}
+
+void Streamer::updateTweetStreams(){
+	printf("Updating Tweet Streams\n");
 }
