@@ -1,9 +1,10 @@
+Handle @happy
 Start #haiku
 A file that big?
 It might be very useful.
-But now it is gone.
+But not it is gone.
 End #haiku
-Follow #weather
+Follow #bostonweather
 Read
 Start #haiku
 The website you seek
